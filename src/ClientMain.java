@@ -14,8 +14,6 @@ public class ClientMain extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			//정지완두콩
-			//박종찬
 			public void run() {
 				try {
 					ClientMain frame = new ClientMain();

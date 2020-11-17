@@ -225,29 +225,29 @@ public class ClientInGame {
 		frame.getContentPane().add(lblNewLabel_4_1_1);
 		
 		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\3.PNG"));
+		lblNewLabel_4.setIcon(new ImageIcon("images/3.PNG"));
 		lblNewLabel_4.setBounds(355, 339, 50, 50);
 		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_4_7 = new JLabel("");
-		lblNewLabel_4_7.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\3.PNG"));
+		lblNewLabel_4_7.setIcon(new ImageIcon("images/3.PNG"));
 		lblNewLabel_4_7.setBounds(594, 339, 50, 50);
 		frame.getContentPane().add(lblNewLabel_4_7);
 		
 		JLabel lblNewLabel_4_17_1 = new JLabel("");
-		lblNewLabel_4_17_1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Start.png"));
+		lblNewLabel_4_17_1.setIcon(new ImageIcon("images/Start.png"));
 		lblNewLabel_4_17_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4_17_1.setBounds(103, 505, 100, 100);
 		frame.getContentPane().add(lblNewLabel_4_17_1);
 		
 		JLabel lblNewLabel_4_17_2 = new JLabel("");
-		lblNewLabel_4_17_2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\bono.jpg"));
+		lblNewLabel_4_17_2.setIcon(new ImageIcon("images/bono.jpg"));
 		lblNewLabel_4_17_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4_17_2.setBounds(103, 306, 100, 100);
 		frame.getContentPane().add(lblNewLabel_4_17_2);
 		
 		JLabel lblNewLabel_4_8_1 = new JLabel("");
-		lblNewLabel_4_8_1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\boogie2.jpg"));
+		lblNewLabel_4_8_1.setIcon(new ImageIcon("images/boogie2.jpg"));
 		lblNewLabel_4_8_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4_8_1.setFont(new Font("ÇÑÄÄ À±°íµñ 240", Font.PLAIN, 20));
 		lblNewLabel_4_8_1.setBounds(806, 106, 100, 100);

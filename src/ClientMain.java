@@ -54,7 +54,7 @@ public class ClientMain extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\sdfsdfsdfsd.png"));
+		lblNewLabel.setIcon(new ImageIcon("images/sdfsdfsdfsd.png"));
 		lblNewLabel.setBounds(342, 150, 324, 260);
 		contentPane.add(lblNewLabel);
 		

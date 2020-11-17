@@ -1,15 +1,21 @@
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
-public class ClientMain {
+public class ClientMain extends JFrame {
 
-	private JFrame frame;
+	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -18,8 +24,8 @@ public class ClientMain {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClientMain window = new ClientMain();
-					window.frame.setVisible(true);
+					ClientMain frame = new ClientMain();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -28,150 +34,61 @@ public class ClientMain {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public ClientMain() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1024, 768);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1024, 768);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("\uC8FC\uC0AC\uC704 \uAD74\uB9AC\uAE30");
-		btnNewButton.setBounds(434, 466, 140, 40);
-		frame.getContentPane().add(btnNewButton);
+		JLabel lblNewLabel_1 = new JLabel("\uC0C1\uC0C1\uB9C8\uBE14");
+		lblNewLabel_1.setForeground(Color.BLUE);
+		lblNewLabel_1.setFont(new Font("¾çÀçºí·°Ã¼", Font.BOLD, 60));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(334, 41, 340, 88);
+		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel = new JLabel("user1");
-		lblNewLabel.setBounds(12, 10, 57, 15);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\sdfsdfsdfsd.png"));
+		lblNewLabel.setBounds(342, 150, 324, 260);
+		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("user2");
-		lblNewLabel_1.setBounds(939, 10, 57, 15);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel label = new JLabel("\uD604\uC7AC \uC778\uC6D0 / \uCD5C\uB300 \uC778\uC6D0");
+		label.setFont(new Font("ÇÑÄÄ À±°íµñ 240", Font.PLAIN, 30));
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(320, 402, 368, 52);
+		contentPane.add(label);
 		
-		JLabel lblNewLabel_2 = new JLabel("user3");
-		lblNewLabel_2.setBounds(12, 642, 57, 15);
-		frame.getContentPane().add(lblNewLabel_2);
+		JLabel lblNewLabel_2 = new JLabel("2 / 4");
+		lblNewLabel_2.setFont(new Font("ÇÑÄÄ À±°íµñ 240", Font.PLAIN, 20));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(410, 464, 184, 36);
+		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("user4");
-		lblNewLabel_3.setBounds(939, 642, 57, 15);
-		frame.getContentPane().add(lblNewLabel_3);
+		JLabel lblNewLabel_3 = new JLabel("\uC9C4\uD589 \uC911 (17 \uD134)");
+		lblNewLabel_3.setFont(new Font("ÇÑÄÄ À±°íµñ 250", Font.BOLD, 15));
+		lblNewLabel_3.setForeground(Color.RED);
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setBounds(420, 510, 174, 36);
+		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_5 = new JLabel("105012353 \uB9C8\uBE14");
-		lblNewLabel_5.setBounds(12, 35, 91, 15);
-		frame.getContentPane().add(lblNewLabel_5);
+		JLabel label_1 = new JLabel("\uB2C9\uB124\uC784");
+		label_1.setFont(new Font("ÇÑÄÄ À±°íµñ 240", Font.PLAIN, 20));
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setBounds(357, 556, 109, 36);
+		contentPane.add(label_1);
 		
-		JLabel lblNewLabel_5_1 = new JLabel("105012353 \uB9C8\uBE14");
-		lblNewLabel_5_1.setBounds(905, 35, 91, 15);
-		frame.getContentPane().add(lblNewLabel_5_1);
+		textField = new JTextField();
+		textField.setBounds(463, 556, 166, 35);
+		contentPane.add(textField);
+		textField.setColumns(10);
 		
-		JLabel lblNewLabel_5_2 = new JLabel("105012353 \uB9C8\uBE14");
-		lblNewLabel_5_2.setBounds(0, 667, 91, 15);
-		frame.getContentPane().add(lblNewLabel_5_2);
-		
-		JLabel lblNewLabel_5_3 = new JLabel("105012353 \uB9C8\uBE14");
-		lblNewLabel_5_3.setBounds(905, 667, 91, 15);
-		frame.getContentPane().add(lblNewLabel_5_3);
-		
-		JLabel lblNewLabel_4_1 = new JLabel("New label");
-		lblNewLabel_4_1.setBounds(204, 106, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_1);
-		
-		JLabel lblNewLabel_4_2 = new JLabel("New label");
-		lblNewLabel_4_2.setBounds(305, 106, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_2);
-		
-		JLabel lblNewLabel_4_3 = new JLabel("New label");
-		lblNewLabel_4_3.setBounds(405, 106, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_3);
-		
-		JLabel lblNewLabel_4_4 = new JLabel("New label");
-		lblNewLabel_4_4.setBounds(506, 106, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_4);
-		
-		JLabel lblNewLabel_4_5 = new JLabel("New label");
-		lblNewLabel_4_5.setBounds(606, 106, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_5);
-		
-		JLabel lblNewLabel_4_6 = new JLabel("New label");
-		lblNewLabel_4_6.setBounds(706, 106, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_6);
-		
-		JLabel lblNewLabel_4_8 = new JLabel("New label");
-		lblNewLabel_4_8.setBounds(806, 206, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_8);
-		
-		JLabel lblNewLabel_4_9 = new JLabel("New label");
-		lblNewLabel_4_9.setBounds(806, 307, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_9);
-		
-		JLabel lblNewLabel_4_10 = new JLabel("New label");
-		lblNewLabel_4_10.setBounds(806, 406, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_10);
-		
-		JLabel lblNewLabel_4_12 = new JLabel("New label");
-		lblNewLabel_4_12.setBounds(706, 505, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_12);
-		
-		JLabel lblNewLabel_4_13 = new JLabel("New label");
-		lblNewLabel_4_13.setBounds(606, 505, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_13);
-		
-		JLabel lblNewLabel_4_14 = new JLabel("New label");
-		lblNewLabel_4_14.setBounds(506, 505, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_14);
-		
-		JLabel lblNewLabel_4_15 = new JLabel("New label");
-		lblNewLabel_4_15.setBounds(405, 505, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_15);
-		
-		JLabel lblNewLabel_4_16 = new JLabel("New label");
-		lblNewLabel_4_16.setBounds(305, 505, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_16);
-		
-		JLabel lblNewLabel_4_17 = new JLabel("New label");
-		lblNewLabel_4_17.setBounds(204, 505, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_17);
-		
-		JLabel lblNewLabel_4_18 = new JLabel("\uC2DC\uC791");
-		lblNewLabel_4_18.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_18.setBounds(103, 505, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_18);
-		
-		JLabel lblNewLabel_4_19 = new JLabel("New label");
-		lblNewLabel_4_19.setBounds(103, 406, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_19);
-		
-		JLabel lblNewLabel_4_21 = new JLabel("New label");
-		lblNewLabel_4_21.setBounds(92, 206, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_21);
-		
-		JLabel lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\3.PNG"));
-		lblNewLabel_7.setBounds(546, 307, 50, 50);
-		frame.getContentPane().add(lblNewLabel_7);
-		
-		JLabel lblNewLabel_7_1 = new JLabel("");
-		lblNewLabel_7_1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\3.PNG"));
-		lblNewLabel_7_1.setBounds(400, 312, 50, 50);
-		frame.getContentPane().add(lblNewLabel_7_1);
-		
-
-		
-		JLabel lblNewLabel_4_18_3 = new JLabel("\uAE30\uB9D0\uACE0\uC0AC");
-		lblNewLabel_4_18_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_18_3.setBounds(806, 505, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_18_3);
-		
-		JLabel lblNewLabel_4_18_4 = new JLabel("\uD300\uD504\uB85C\uC81D\uD2B8");
-		lblNewLabel_4_18_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_18_4.setBounds(103, 307, 100, 100);
-		frame.getContentPane().add(lblNewLabel_4_18_4);
+		JButton btnNewButton = new JButton("\uC785\uC7A5");
+		btnNewButton.setBounds(434, 640, 140, 46);
+		contentPane.add(btnNewButton);
 	}
 }

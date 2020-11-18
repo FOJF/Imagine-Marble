@@ -236,7 +236,7 @@ public class ClientInGame {
 		
 		JLabel lblNewLabel_4_17_1 = new JLabel("");
 		lblNewLabel_4_17_1.setIcon(new ImageIcon("images/Start.png"));
-		lblNewLabel_4_17_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4_17_1.setHorizontalAlignment(SwingConstants.CENTER); 
 		lblNewLabel_4_17_1.setBounds(103, 505, 100, 100);
 		frame.getContentPane().add(lblNewLabel_4_17_1);
 		

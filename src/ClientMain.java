@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -15,7 +17,9 @@ import javax.swing.JButton;
 public class ClientMain extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField txtUserName;
+	private JTextField txtIpAdress;
+	private JTextField txtPortNumber;
 
 	/**
 	 * Launch the application.
@@ -54,7 +58,7 @@ public class ClientMain extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("images/sdfsdfsdfsd.png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\sdfsdfsdfsd.png"));
 		lblNewLabel.setBounds(342, 150, 324, 260);
 		contentPane.add(lblNewLabel);
 		
@@ -83,13 +87,56 @@ public class ClientMain extends JFrame {
 		label_1.setBounds(357, 556, 109, 36);
 		contentPane.add(label_1);
 		
-		textField = new JTextField();
-		textField.setBounds(463, 556, 166, 35);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtUserName = new JTextField();
+		txtUserName.setBounds(463, 556, 166, 35);
+		contentPane.add(txtUserName);
+		txtUserName.setColumns(10);
 		
-		JButton btnNewButton = new JButton("\uC785\uC7A5");
-		btnNewButton.setBounds(434, 640, 140, 46);
-		contentPane.add(btnNewButton);
+		JLabel IpAdress= new JLabel("Ip Adress");
+		IpAdress.setFont(new Font("굴림", Font.BOLD, 15));
+		IpAdress.setHorizontalAlignment(SwingConstants.CENTER);
+		IpAdress.setBounds(752, 656, 82, 30);
+		contentPane.add(IpAdress);
+		
+		JLabel PortNumber = new JLabel("Port Number");
+		PortNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		PortNumber.setFont(new Font("굴림", Font.BOLD, 13));
+		PortNumber.setBounds(752, 689, 82, 30);
+		contentPane.add(PortNumber);
+		
+		txtIpAdress = new JTextField();
+		txtIpAdress.setText("127.0.0.1");
+		txtIpAdress.setBounds(846, 661, 116, 21);
+		contentPane.add(txtIpAdress);
+		txtIpAdress.setColumns(10);
+		
+		txtPortNumber = new JTextField();
+		txtPortNumber.setText("30000");
+		txtPortNumber.setColumns(10);
+		txtPortNumber.setBounds(846, 694, 116, 21);
+		contentPane.add(txtPortNumber);
+		
+		JButton btnStart = new JButton("\uC785\uC7A5");
+		 btnStart.setBounds(434, 640, 140, 46);
+		contentPane.add(btnStart);
+		Myaction action = new Myaction();
+		btnStart.addActionListener(action);
+		txtUserName.addActionListener(action);
+		txtIpAdress.addActionListener(action);
+		txtPortNumber.addActionListener(action);
+		
+		
+
+	}
+	class Myaction implements ActionListener // 내부클래스로 액션 이벤트 처리 클래스
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String username = txtUserName.getText().trim();
+			String ip_addr = txtIpAdress.getText().trim();
+			String port_no = txtPortNumber.getText().trim();
+			ClientInGame view = new ClientInGame(username, ip_addr, port_no);
+			setVisible(false);
+		}
 	}
 }

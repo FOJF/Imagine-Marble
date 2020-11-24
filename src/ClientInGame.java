@@ -1,5 +1,8 @@
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -9,18 +12,24 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
 
-public class ClientInGame {
+public class ClientInGame extends JFrame {
 
 	private JFrame frame;
+	private JLabel Dice1 = new JLabel("");
+	private JLabel Dice2 = new JLabel("");
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			private String ip_addr;
+			private String port_no;
+			private String username;
+
 			public void run() {
 				try {
-					 ClientInGame window = new  ClientInGame();
+					ClientInGame window = new  ClientInGame(username, ip_addr,port_no);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +41,7 @@ public class ClientInGame {
 	/**
 	 * Create the application.
 	 */
-	public  ClientInGame() {
+	public  ClientInGame(String username, String ip_addr, String port_no) {
 		initialize();
 	}
 
@@ -45,10 +54,12 @@ public class ClientInGame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("\uC8FC\uC0AC\uC704 \uAD74\uB9AC\uAE30");
-		btnNewButton.setFont(new Font("문체부 제목 돋음체", Font.BOLD, 15));
-		btnNewButton.setBounds(434, 466, 140, 40);
-		frame.getContentPane().add(btnNewButton);
+		JButton btnRoll = new JButton("\uC8FC\uC0AC\uC704 \uAD74\uB9AC\uAE30");
+		btnRoll.setFont(new Font("문체부 제목 돋음체", Font.BOLD, 15));
+		btnRoll.setBounds(434, 466, 140, 40);
+		frame.getContentPane().add(btnRoll);
+		Rollaction ra = new Rollaction();
+		btnRoll.addActionListener(ra);
 		
 		JLabel lblNewLabel = new JLabel("user1");
 		lblNewLabel.setBounds(12, 10, 57, 15);
@@ -190,13 +201,15 @@ public class ClientInGame {
 		lblNewLabel_4_21.setBounds(103, 206, 100, 100);
 		frame.getContentPane().add(lblNewLabel_4_21);
 		
-		JLabel lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setBounds(546, 307, 50, 50);
-		frame.getContentPane().add(lblNewLabel_7);
+		//JLabel Dice1 = new JLabel("");
+		Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\6.PNG"));
+		Dice1.setBounds(545, 312, 50, 50);
+		frame.getContentPane().add(Dice1);
 		
-		JLabel lblNewLabel_7_1 = new JLabel("");
-		lblNewLabel_7_1.setBounds(400, 312, 50, 50);
-		frame.getContentPane().add(lblNewLabel_7_1);
+		//JLabel Dice2 = new JLabel("");
+		Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\1.PNG"));
+		Dice2.setBounds(400, 312, 50, 50);
+		frame.getContentPane().add(Dice2);
 		
 		JLabel lblNewLabel_4_18_1 = new JLabel("\uB300\uB3D9\uC81C");
 		lblNewLabel_4_18_1.setForeground(Color.RED);
@@ -224,33 +237,75 @@ public class ClientInGame {
 		lblNewLabel_4_1_1.setBounds(103, 106, 100, 100);
 		frame.getContentPane().add(lblNewLabel_4_1_1);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setIcon(new ImageIcon("images/3.PNG"));
-		lblNewLabel_4.setBounds(355, 339, 50, 50);
-		frame.getContentPane().add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_4_7 = new JLabel("");
-		lblNewLabel_4_7.setIcon(new ImageIcon("images/3.PNG"));
-		lblNewLabel_4_7.setBounds(594, 339, 50, 50);
-		frame.getContentPane().add(lblNewLabel_4_7);
-		
 		JLabel lblNewLabel_4_17_1 = new JLabel("");
-		lblNewLabel_4_17_1.setIcon(new ImageIcon("images/Start.png"));
+		lblNewLabel_4_17_1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\Start.png"));
 		lblNewLabel_4_17_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4_17_1.setBounds(103, 505, 100, 100);
 		frame.getContentPane().add(lblNewLabel_4_17_1);
 		
 		JLabel lblNewLabel_4_17_2 = new JLabel("");
-		lblNewLabel_4_17_2.setIcon(new ImageIcon("images/bono.jpg"));
+		lblNewLabel_4_17_2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\bono.jpg"));
 		lblNewLabel_4_17_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4_17_2.setBounds(103, 306, 100, 100);
 		frame.getContentPane().add(lblNewLabel_4_17_2);
 		
 		JLabel lblNewLabel_4_8_1 = new JLabel("");
-		lblNewLabel_4_8_1.setIcon(new ImageIcon("images/boogie2.jpg"));
+		lblNewLabel_4_8_1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\boogie2.jpg"));
 		lblNewLabel_4_8_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4_8_1.setFont(new Font("한컴 윤고딕 240", Font.PLAIN, 20));
 		lblNewLabel_4_8_1.setBounds(806, 106, 100, 100);
 		frame.getContentPane().add(lblNewLabel_4_8_1);
+		setVisible(true);
+		
+	}
+	class Rollaction implements ActionListener // 내부클래스로 액션 이벤트 처리 클래스
+	{
+		int time=0;
+		int num1=0;
+		int num2=0;
+		Random rd1 = new Random();
+		Random rd2 = new Random();
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+				num1 = rd1.nextInt(5)+1;
+				num2 = rd1.nextInt(5)+1;
+				System.out.println(num1+" "+num2);
+				
+				if(num1 == 1)
+					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\1.PNG"));
+				if(num1 == 2)
+					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\2.PNG"));
+				if(num1 == 3)
+					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\3.PNG"));
+				if(num1 == 4)
+					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\4.PNG"));
+				if(num1 == 5)
+					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\5.PNG"));
+				if(num1 == 6)
+					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\6.PNG"));
+				if(num2 == 1)
+					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\1.PNG"));
+				if(num2 == 2)
+					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\2.PNG"));
+				if(num2 == 3)
+					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\3.PNG"));
+				if(num2 == 4)
+					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\4.PNG"));
+				if(num2 == 5)
+					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\5.PNG"));
+				if(num2 == 6)
+					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\6.PNG"));
+					
+				try {
+					time++;
+					Thread.sleep(1000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			
+		}
 	}
 }

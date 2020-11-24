@@ -38,6 +38,14 @@ public class ClientGameRoom extends JFrame {
 	private OutputStream os;
 	private DataInputStream dis;
 	private DataOutputStream dos;
+	private String PlayerNum = "4";
+	private String InPlayerNum;
+	private String GameState;
+	private String RoomNumber;
+	private String SendIpAddr;
+	private String SendPort;
+	private int[] RoomCnt=new int[5];
+	private JLabel[] InPlayerNumLabel = new JLabel[4];
 
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
@@ -45,6 +53,10 @@ public class ClientGameRoom extends JFrame {
 	private JTextField txtUserName;
 	private JTextField txtIpAdress;
 	private JTextField txtPortNumber;
+	private JButton btnInButton1;
+	private JButton btnInButton2;
+	private JButton btnInButton3;
+	private JButton btnInButton4;
 
 	/**
 	 * Create the frame.
@@ -54,52 +66,109 @@ public class ClientGameRoom extends JFrame {
 		setBounds(100, 100, 1024, 768);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(username);
-		lblNewLabel.setFont(new Font("한컴 윤고딕 240", Font.PLAIN, 15));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(0, 0, 200, 32);
-		getContentPane().add(lblNewLabel);
+		JLabel NameLabel = new JLabel(username);
+		NameLabel.setFont(new Font("한컴 윤고딕 240", Font.PLAIN, 15));
+		NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		NameLabel.setBounds(0, 0, 200, 32);
+		getContentPane().add(NameLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("\uB2D8 \uC548\uB155\uD558\uC138\uC694!");
-		lblNewLabel_1.setFont(new Font("한컴 윤고딕 240", Font.PLAIN, 15));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1.setBounds(200, 0, 164, 32);
-		getContentPane().add(lblNewLabel_1);
+		JLabel HiLabel = new JLabel("\uB2D8 \uC548\uB155\uD558\uC138\uC694!");
+		HiLabel.setFont(new Font("한컴 윤고딕 240", Font.PLAIN, 15));
+		HiLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		HiLabel.setBounds(200, 0, 164, 32);
+		getContentPane().add(HiLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("1\uBC88\uBC29");
-		lblNewLabel_2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(12, 135, 400, 54);
-		getContentPane().add(lblNewLabel_2);
+		JLabel RoomListLabel = new JLabel("\uBC29\uBAA9\uB85D");
+		RoomListLabel.setFont(new Font("한컴 소망 B", Font.PLAIN, 25));
+		RoomListLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		RoomListLabel.setBounds(404, 65, 200, 50);
+		getContentPane().add(RoomListLabel);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("\uBC29\uBAA9\uB85D");
-		lblNewLabel_2_2.setFont(new Font("한컴 소망 B", Font.PLAIN, 25));
-		lblNewLabel_2_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_2.setBounds(404, 65, 200, 50);
-		getContentPane().add(lblNewLabel_2_2);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(12, 135, 464, 244);
+		getContentPane().add(panel_1);
+		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("2\uBC88\uBC29");
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		lblNewLabel_2_1.setBounds(596, 135, 400, 54);
-		getContentPane().add(lblNewLabel_2_1);
+		JLabel Room1PlayerLabel = new JLabel("\uC778\uC6D0\uC218");
+		Room1PlayerLabel.setBounds(58, 86, 57, 15);
+		panel_1.add(Room1PlayerLabel);
 		
-		JLabel lblNewLabel_2_3 = new JLabel("3\uBC88\uBC29");
-		lblNewLabel_2_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		lblNewLabel_2_3.setBounds(12, 387, 400, 54);
-		getContentPane().add(lblNewLabel_2_3);
+		JLabel Room1Label = new JLabel("1번방");
+		Room1Label.setBounds(181, 10, 64, 39);
+		panel_1.add(Room1Label);
+		Room1Label.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		
-		JLabel lblNewLabel_2_4 = new JLabel("4\uBC88\uBC29");
-		lblNewLabel_2_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		lblNewLabel_2_4.setBounds(596, 387, 400, 54);
-		getContentPane().add(lblNewLabel_2_4);
+		InPlayerNumLabel[0] = new JLabel(InPlayerNum);
+		InPlayerNumLabel[0].setBounds(127, 86, 57, 15);
+		panel_1.add(InPlayerNumLabel[0]);
+		
+		JLabel PlayerNumLabel1 = new JLabel(PlayerNum);
+		PlayerNumLabel1.setBounds(248, 86, 57, 15);
+		panel_1.add(PlayerNumLabel1);
+		
+		JLabel Slash1 = new JLabel("/");
+		Slash1.setHorizontalAlignment(SwingConstants.CENTER);
+		Slash1.setBounds(179, 86, 57, 15);
+		panel_1.add(Slash1);
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBounds(532, 135, 464, 244);
+		getContentPane().add(panel_2);
+		
+		JLabel Room2PlayerLabel = new JLabel("\uC778\uC6D0\uC218");
+		Room2PlayerLabel.setBounds(58, 86, 57, 15);
+		panel_2.add(Room2PlayerLabel);
+		
+		JLabel Room2Label = new JLabel("2번방");
+		Room2Label.setHorizontalAlignment(SwingConstants.CENTER);
+		Room2Label.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		Room2Label.setBounds(200, 10, 64, 39);
+		panel_2.add(Room2Label);
+		
+		JLabel GameState2 = new JLabel("");
+		GameState2.setBounds(58, 111, 57, 15);
+		panel_2.add(GameState2);
+		
+		InPlayerNumLabel[1] = new JLabel(" ");
+		InPlayerNumLabel[1].setBounds(127, 86, 57, 15);
+		panel_2.add(InPlayerNumLabel[1]);
+		
+		JLabel PlayerNumLabel2 = new JLabel("");
+		PlayerNumLabel2.setBounds(248, 86, 57, 15);
+		panel_2.add(PlayerNumLabel2);
+		
+		btnInButton2 = new JButton("입장");
+		btnInButton2.setBounds(176, 196, 97, 23);
+		panel_2.add(btnInButton2);
+		Inaction ia2 = new Inaction();
+		btnInButton2.addActionListener(ia2);
+		
+		JLabel Slash2 = new JLabel("/");
+		Slash2.setHorizontalAlignment(SwingConstants.CENTER);
+		Slash2.setBounds(179, 86, 57, 15);
+		panel_2.add(Slash2);
+		btnInButton1 = new JButton("입장");
+		btnInButton1.setBounds(181, 195, 97, 23);
+		panel_1.add(btnInButton1);
+		
+		JLabel GameState1 = new JLabel("");
+		GameState1.setBounds(58, 111, 57, 15);
+		panel_1.add(GameState1);
+		Inaction ia1 = new Inaction();
+		btnInButton1.addActionListener(ia1);
+		
+		
+		
+		
+		
 		contentPane = new JPanel();
 		setVisible(true);
 
 		AppendText("User " + username + " connecting " + ip_addr + " " + port_no);
 		UserName = username;
+		SendIpAddr = ip_addr;
+		SendPort = port_no;
+		
 		try {
 			socket = new Socket(ip_addr, Integer.parseInt(port_no));
 
@@ -117,20 +186,17 @@ public class ClientGameRoom extends JFrame {
 		}
 
 	}
-		
 
-	
 	public void AppendText(String msg) {
 		// textArea.append(msg + "\n");
 		// AppendIcon(icon1);
 		msg = msg.trim(); // 앞뒤 blank와 \n을 제거한다.
 		/*
-		int len = textArea.getDocument().getLength();
-		// 끝으로 이동
-		textArea.setCaretPosition(len);
-		textArea.replaceSelection(msg + "\n");
-		*/
+		 * int len = textArea.getDocument().getLength(); // 끝으로 이동
+		 * textArea.setCaretPosition(len); textArea.replaceSelection(msg + "\n");
+		 */
 	}
+
 	public void SendChatMsg(ChatMsg obj) {
 		try {
 			oos.writeObject(obj.code);
@@ -156,5 +222,114 @@ public class ClientGameRoom extends JFrame {
 			// System.exit(0);
 		}
 	}
+	public ChatMsg ReadChatMsg() {
+		Object obj = null;
+		String msg = null;
+		ChatMsg cm = new ChatMsg("", "", "");
+		// Android와 호환성을 위해 각각의 Field를 따로따로 읽는다.
 
+			try {
+				obj = ois.readObject();
+				cm.code = (String) obj;
+				obj = ois.readObject();
+				cm.UserName = (String) obj;
+				obj = ois.readObject();
+				cm.data = (String) obj;
+				if (cm.code.equals("300")) {
+					obj = ois.readObject();
+					cm.imgbytes = (byte[]) obj;
+				}
+			} catch (ClassNotFoundException | IOException e) {
+				// TODO Auto-generated catch block
+				AppendText("ReadChatMsg Error");
+				e.printStackTrace();
+				try {
+					oos.close();
+					socket.close();
+					ois.close();
+					socket = null;
+					return null;
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					try {
+						oos.close();
+						socket.close();
+						ois.close();
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+
+					socket = null;
+					return null;
+				}
+
+				// textArea.append("메세지 송신 에러!!\n");
+				// System.exit(0);
+			}
+
+
+		return cm;
+	}
+	class ListenNetwork extends Thread {
+		public void run() {
+			while (true) {
+				ChatMsg cm = ReadChatMsg();
+				if (cm==null)
+					break;
+				if (socket == null)
+					break;
+				String msg;
+				msg = String.format("[%s] %s", cm.UserName, cm.data);
+				switch (cm.code) {
+				case "200": // chat message
+					AppendText(msg);
+					break;
+				case "300": // Image 첨부
+					AppendText("[" + cm.UserName + "]" + " " + cm.data);
+					//AppendImage(cm.img);
+					//AppendImageBytes(cm.imgbytes);
+					break;
+				case "602":
+					String[] RoomData = cm.data.split(" ");
+					RoomCnt[Integer.parseInt(RoomData[0])] = Integer.parseInt(RoomData[1]); 
+					InPlayerNumLabel[Integer.parseInt(RoomData[0])-1].setText(RoomData[1]);
+					break;
+					
+				}
+
+			}
+		}
+	}
+	class Inaction implements ActionListener // 내부클래스로 액션 이벤트 처리 클래스.
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == btnInButton1) 
+				RoomNumber = "1";
+			else if(e.getSource() == btnInButton2)
+				RoomNumber = "2";
+						
+				try {
+					socket = new Socket(SendIpAddr, Integer.parseInt(SendPort));
+
+					oos = new ObjectOutputStream(socket.getOutputStream());
+					oos.flush();
+					ois = new ObjectInputStream(socket.getInputStream());
+
+					ChatMsg obcm = new ChatMsg(UserName, "600", RoomNumber);
+					SendChatMsg(obcm);
+
+				} catch (NumberFormatException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					AppendText("connect error");
+				}
+				// ClientInGame game = new ClientInGame(username,ip_addr,port_no);
+				setVisible(false);
+			}
+			
+		
+	}
 }

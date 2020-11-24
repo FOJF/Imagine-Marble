@@ -57,7 +57,7 @@ public class ClientMain extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\sdfsdfsdfsd.png"));
+		lblNewLabel.setIcon(new ImageIcon("Images/sdfsdfsdfsd.png"));
 		lblNewLabel.setBounds(342, 150, 324, 260);
 		contentPane.add(lblNewLabel);
 		
@@ -127,7 +127,7 @@ public class ClientMain extends JFrame {
 		
 
 	}
-	class Myaction implements ActionListener // 내부클래스로 액션 이벤트 처리 클래스
+	class Myaction implements ActionListener // 내부클래스로 액션 이벤트 처리 클래스.
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) {

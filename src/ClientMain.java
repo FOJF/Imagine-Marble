@@ -135,7 +135,7 @@ public class ClientMain extends JFrame {
 			String username = txtUserName.getText().trim();
 			String ip_addr = txtIpAdress.getText().trim();
 			String port_no = txtPortNumber.getText().trim();
-			ClientInGame view = new ClientInGame(username, ip_addr, port_no);
+			ClientGameRoom view = new ClientGameRoom(username,ip_addr,port_no);
 			setVisible(false);
 		}
 	}

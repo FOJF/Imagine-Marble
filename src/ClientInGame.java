@@ -23,13 +23,10 @@ public class ClientInGame extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			private String ip_addr;
-			private String port_no;
-			private String username;
 
 			public void run() {
 				try {
-					ClientInGame window = new  ClientInGame(username, ip_addr,port_no);
+					ClientInGame window = new  ClientInGame();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +38,7 @@ public class ClientInGame extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public  ClientInGame(String username, String ip_addr, String port_no) {
+	public  ClientInGame() {
 		initialize();
 	}
 
@@ -60,6 +57,7 @@ public class ClientInGame extends JFrame {
 		frame.getContentPane().add(btnRoll);
 		Rollaction ra = new Rollaction();
 		btnRoll.addActionListener(ra);
+
 		
 		JLabel lblNewLabel = new JLabel("user1");
 		lblNewLabel.setBounds(12, 10, 57, 15);
@@ -138,7 +136,7 @@ public class ClientInGame extends JFrame {
 		JLabel lblNewLabel_4_9 = new JLabel("\uC9C4\uB9AC\uAD00");
 		lblNewLabel_4_9.setFont(new Font("ÇÑÄÄ À±°íµñ 240", Font.PLAIN, 20));
 		lblNewLabel_4_9.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_9.setBounds(806, 306, 100, 100);
+		lblNewLabel_4_9.setBounds(806, 312, 100, 100);
 		frame.getContentPane().add(lblNewLabel_4_9);
 		
 		JLabel lblNewLabel_4_10 = new JLabel("\uC9C0\uC120\uAD00");
@@ -263,49 +261,17 @@ public class ClientInGame extends JFrame {
 		int time=0;
 		int num1=0;
 		int num2=0;
-		Random rd1 = new Random();
-		Random rd2 = new Random();
+		Random rd = new Random();
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
-				num1 = rd1.nextInt(5)+1;
-				num2 = rd1.nextInt(5)+1;
+				num1 = rd.nextInt(6)+1;
+				num2 = rd.nextInt(6)+1;
 				System.out.println(num1+" "+num2);
-				
-				if(num1 == 1)
-					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\1.PNG"));
-				if(num1 == 2)
-					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\2.PNG"));
-				if(num1 == 3)
-					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\3.PNG"));
-				if(num1 == 4)
-					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\4.PNG"));
-				if(num1 == 5)
-					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\5.PNG"));
-				if(num1 == 6)
-					Dice1.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\6.PNG"));
-				if(num2 == 1)
-					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\1.PNG"));
-				if(num2 == 2)
-					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\2.PNG"));
-				if(num2 == 3)
-					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\3.PNG"));
-				if(num2 == 4)
-					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\4.PNG"));
-				if(num2 == 5)
-					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\5.PNG"));
-				if(num2 == 6)
-					Dice2.setIcon(new ImageIcon("C:\\Users\\PJC\\Desktop\\Imagine-Marble\\Images\\6.PNG"));
-					
-				try {
-					time++;
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
+				Dice1.setIcon(new ImageIcon("Images/"+num1+".PNG"));
+				Dice2.setIcon(new ImageIcon("Images/"+num2+".PNG"));
 			
+		
 		}
 	}
+
 }

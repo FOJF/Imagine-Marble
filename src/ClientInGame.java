@@ -40,15 +40,13 @@ public class ClientInGame extends JFrame {
 	private JLabel Dice1 = new JLabel("");
 	private JLabel Dice2 = new JLabel("");
 
-	public ClientInGame(String username, String ip_addr, String port_no, String roomnumber, Socket SOCKET,
-			ObjectOutputStream OOS, ObjectInputStream OIS) {
+	public ClientInGame(String username, String roomnumber, Socket SOCKET, ObjectOutputStream OOS,
+			ObjectInputStream OIS) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1024, 768);
 		getContentPane().setLayout(null);
 
 		UserName = username;
-		SendIpAddr = ip_addr;
-		SendPort = port_no;
 		RoomNumber = roomnumber;
 		socket = SOCKET;
 		oos = OOS;
@@ -377,11 +375,10 @@ public class ClientInGame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 			ChatMsg obcm1 = new ChatMsg(UserName, "601", RoomNumber);
-			// SendChatMsg(obcm1);
-
-			ClientGameRoom cgr = new ClientGameRoom(UserName, SendIpAddr, SendPort);
-			dispose();
 			SendChatMsg(obcm1);
+
+			ClientGameRoom cgr = new ClientGameRoom(UserName, socket, oos, ois);
+			dispose();
 		}
 
 	}

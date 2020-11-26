@@ -31,6 +31,15 @@ public class ClientMain extends JFrame {
 	private JTextField txtPortNumber;
 	private String UserName;
 
+	private Socket socket; // 연결소켓
+	private InputStream is;
+	private OutputStream os;
+	private DataInputStream dis;
+	private DataOutputStream dos;
+
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+
 	/**
 	 * Launch the application.
 	 */
@@ -136,6 +145,42 @@ public class ClientMain extends JFrame {
 
 	}
 
+	public void AppendText(String msg) {
+		// textArea.append(msg + "\n");
+		// AppendIcon(icon1);
+		msg = msg.trim(); // 앞뒤 blank와 \n을 제거한다.
+		/*
+		 * int len = textArea.getDocument().getLength(); // 끝으로 이동
+		 * textArea.setCaretPosition(len); textArea.replaceSelection(msg + "\n");
+		 */
+	}
+
+	public void SendChatMsg(ChatMsg obj) {
+		try {
+			oos.writeObject(obj.code);
+			oos.writeObject(obj.UserName);
+			oos.writeObject(obj.data);
+			if (obj.code.equals("300")) { // 이미지 첨부 있는 경우
+				oos.writeObject(obj.imgbytes);
+			}
+			oos.flush();
+		} catch (IOException e) {
+			AppendText("SendChatMsg Error");
+			e.printStackTrace();
+			try {
+				oos.close();
+				socket.close();
+				ois.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			// textArea.append("메세지 송신 에러!!\n");
+			// System.exit(0);
+		}
+	}
+
 	class Myaction implements ActionListener // 내부클래스로 액션 이벤트 처리 클래스.
 	{
 		@Override
@@ -143,8 +188,21 @@ public class ClientMain extends JFrame {
 			String username = txtUserName.getText().trim();
 			String ip_addr = txtIpAdress.getText().trim();
 			String port_no = txtPortNumber.getText().trim();
+			try {
+				socket = new Socket(ip_addr, Integer.parseInt(port_no));
 
-			ClientGameRoom view = new ClientGameRoom(username, ip_addr, port_no);
+				oos = new ObjectOutputStream(socket.getOutputStream());
+				oos.flush();
+				ois = new ObjectInputStream(socket.getInputStream());
+
+				ChatMsg obcm = new ChatMsg(UserName, "100", "Hello");
+				SendChatMsg(obcm);
+			} catch (NumberFormatException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				AppendText("connect error");
+			}
+			ClientGameRoom view = new ClientGameRoom(username, socket, oos, ois);
 			dispose();
 		}
 	}

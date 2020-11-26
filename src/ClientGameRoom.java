@@ -61,12 +61,15 @@ public class ClientGameRoom extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClientGameRoom(String username, String ip_addr, String port_no) {
+	public ClientGameRoom(String username,Socket Socket,ObjectOutputStream Oos,ObjectInputStream Ois) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1024, 768);
 		getContentPane().setLayout(null);
 
 		Inaction ia = new Inaction();
+		socket = Socket;
+		oos = Oos;
+		ois = Ois;
 
 		JLabel NameLabel = new JLabel(username);
 		NameLabel.setFont(new Font("ÇÑÄÄ À±°íµñ 240", Font.PLAIN, 15));
@@ -232,11 +235,9 @@ public class ClientGameRoom extends JFrame {
 
 		contentPane = new JPanel();
 		setVisible(true);
-
-		AppendText("User " + username + " connecting " + ip_addr + " " + port_no);
 		UserName = username;
-		SendIpAddr = ip_addr;
-		SendPort = port_no;
+		//AppendText("User " + username + " connecting " + ip_addr + " " + port_no);
+/*
 		if (count == 0) {
 
 			try {
@@ -258,6 +259,7 @@ public class ClientGameRoom extends JFrame {
 			}
 			count++;
 		}
+		*/
 	}
 
 	public void AppendText(String msg) {
@@ -397,11 +399,7 @@ public class ClientGameRoom extends JFrame {
 			SendChatMsg(obcm);
 
 			// ClientInGame game = new ClientInGame(username,ip_addr,port_no);
-
-			Socket SOCKET = socket;
-			ObjectInputStream OIS = ois;
-			ObjectOutputStream OOS = oos;
-			ClientInGame cig = new ClientInGame(UserName, SendIpAddr, SendPort, RoomNumber, SOCKET, OOS, OIS);
+			ClientInGame cig = new ClientInGame(UserName, RoomNumber, socket, oos, ois);
 			dispose();
 
 		}

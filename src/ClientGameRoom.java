@@ -66,6 +66,8 @@ public class ClientGameRoom extends JFrame {
 		setBounds(100, 100, 1024, 768);
 		getContentPane().setLayout(null);
 		
+		Inaction ia = new Inaction();
+		
 		JLabel NameLabel = new JLabel(username);
 		NameLabel.setFont(new Font("«—ƒƒ ¿±∞ÌµÒ 240", Font.PLAIN, 15));
 		NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -98,7 +100,7 @@ public class ClientGameRoom extends JFrame {
 		panel_1.add(Room1Label);
 		Room1Label.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
 		
-		InPlayerNumLabel[0] = new JLabel(InPlayerNum);
+		InPlayerNumLabel[0] = new JLabel("0");
 		InPlayerNumLabel[0].setBounds(127, 86, 57, 15);
 		panel_1.add(InPlayerNumLabel[0]);
 		
@@ -125,23 +127,22 @@ public class ClientGameRoom extends JFrame {
 		Room2Label.setBounds(200, 10, 64, 39);
 		panel_2.add(Room2Label);
 		
-		JLabel GameState2 = new JLabel("");
+		JLabel GameState2 = new JLabel(" ");
 		GameState2.setBounds(58, 111, 57, 15);
 		panel_2.add(GameState2);
 		
-		InPlayerNumLabel[1] = new JLabel(" ");
+		InPlayerNumLabel[1] = new JLabel("0");
 		InPlayerNumLabel[1].setBounds(127, 86, 57, 15);
 		panel_2.add(InPlayerNumLabel[1]);
 		
-		JLabel PlayerNumLabel2 = new JLabel("");
+		JLabel PlayerNumLabel2 = new JLabel(PlayerNum);
 		PlayerNumLabel2.setBounds(248, 86, 57, 15);
 		panel_2.add(PlayerNumLabel2);
 		
 		btnInButton2 = new JButton("¿‘¿Â");
 		btnInButton2.setBounds(176, 196, 97, 23);
 		panel_2.add(btnInButton2);
-		Inaction ia2 = new Inaction();
-		btnInButton2.addActionListener(ia2);
+		btnInButton2.addActionListener(ia);
 		
 		JLabel Slash2 = new JLabel("/");
 		Slash2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -150,12 +151,84 @@ public class ClientGameRoom extends JFrame {
 		btnInButton1 = new JButton("¿‘¿Â");
 		btnInButton1.setBounds(181, 195, 97, 23);
 		panel_1.add(btnInButton1);
+		btnInButton1.addActionListener(ia);
+		
 		
 		JLabel GameState1 = new JLabel("");
 		GameState1.setBounds(58, 111, 57, 15);
 		panel_1.add(GameState1);
-		Inaction ia1 = new Inaction();
-		btnInButton1.addActionListener(ia1);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setLayout(null);
+		panel_3.setBounds(12, 409, 464, 244);
+		getContentPane().add(panel_3);
+		
+		JLabel Room3PlayerLabel = new JLabel("\uC778\uC6D0\uC218");
+		Room3PlayerLabel.setBounds(58, 86, 57, 15);
+		panel_3.add(Room3PlayerLabel);
+		
+		JLabel Room3Label = new JLabel("3\uBC88\uBC29");
+		Room3Label.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
+		Room3Label.setBounds(181, 10, 64, 39);
+		panel_3.add(Room3Label);
+		
+		JLabel PlayerNumLabel3 = new JLabel("4");
+		PlayerNumLabel3.setBounds(248, 86, 57, 15);
+		panel_3.add(PlayerNumLabel3);
+		
+		JLabel Slash3 = new JLabel("/");
+		Slash3.setHorizontalAlignment(SwingConstants.CENTER);
+		Slash3.setBounds(179, 86, 57, 15);
+		panel_3.add(Slash3);
+		
+		btnInButton3 = new JButton("¿‘¿Â");
+		btnInButton3.setBounds(181, 195, 97, 23);
+		panel_3.add(btnInButton3);
+		btnInButton3.addActionListener(ia);
+		
+		JLabel GameState3 = new JLabel("");
+		GameState3.setBounds(58, 111, 57, 15);
+		panel_3.add(GameState3);
+		
+		InPlayerNumLabel[2] = new JLabel("0");
+		InPlayerNumLabel[2].setBounds(127, 86, 57, 15);
+		panel_3.add(InPlayerNumLabel[2]);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setLayout(null);
+		panel_4.setBounds(532, 409, 464, 244);
+		getContentPane().add(panel_4);
+		
+		JLabel Room4PlayerLabel = new JLabel("\uC778\uC6D0\uC218");
+		Room4PlayerLabel.setBounds(58, 86, 57, 15);
+		panel_4.add(Room4PlayerLabel);
+		
+		JLabel Room4Label = new JLabel("4\uBC88\uBC29");
+		Room4Label.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 15));
+		Room4Label.setBounds(181, 10, 64, 39);
+		panel_4.add(Room4Label);
+		
+		JLabel PlayerNumLabel4 = new JLabel("4");
+		PlayerNumLabel4.setBounds(248, 86, 57, 15);
+		panel_4.add(PlayerNumLabel4);
+		
+		JLabel Slash4 = new JLabel("/");
+		Slash4.setHorizontalAlignment(SwingConstants.CENTER);
+		Slash4.setBounds(179, 86, 57, 15);
+		panel_4.add(Slash4);
+		
+		btnInButton4 = new JButton("¿‘¿Â");
+		btnInButton4.setBounds(181, 195, 97, 23);
+		panel_4.add(btnInButton4);
+		btnInButton4.addActionListener(ia);
+		
+		JLabel GameState4 = new JLabel("");
+		GameState4.setBounds(58, 111, 57, 15);
+		panel_4.add(GameState4);
+
+		InPlayerNumLabel[3] = new JLabel("0");
+		InPlayerNumLabel[3].setBounds(127, 86, 57, 15);
+		panel_4.add(InPlayerNumLabel[3]);
 		
 		
 		
@@ -178,6 +251,8 @@ public class ClientGameRoom extends JFrame {
 
 			ChatMsg obcm = new ChatMsg(UserName, "100", "Hello");
 			SendChatMsg(obcm);
+			ListenNetwork net = new ListenNetwork();
+			net.start();
 
 		} catch (NumberFormatException | IOException e) {
 			// TODO Auto-generated catch block
@@ -310,6 +385,10 @@ public class ClientGameRoom extends JFrame {
 				RoomNumber = "1";
 			else if(e.getSource() == btnInButton2)
 				RoomNumber = "2";
+			else if(e.getSource() == btnInButton3)
+				RoomNumber = "3";
+			else if(e.getSource() == btnInButton4)
+				RoomNumber = "4";
 						
 				try {
 					socket = new Socket(SendIpAddr, Integer.parseInt(SendPort));

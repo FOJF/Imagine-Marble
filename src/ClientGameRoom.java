@@ -55,19 +55,19 @@ public class ClientGameRoom extends JFrame {
 	private JButton btnInButton2;
 	private JButton btnInButton3;
 	private JButton btnInButton4;
+	
+	private static int count = 0;
 
 	/**
 	 * Create the frame.
 	 */
-	public ClientGameRoom(String username,String ip_addr,String port_no,Socket Socket,ObjectOutputStream OOS,ObjectInputStream OIS) {
+	public ClientGameRoom(String username,String ip_addr,String port_no) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1024, 768);
 		getContentPane().setLayout(null);
 		
 		Inaction ia = new Inaction();
-		socket = Socket;
-		oos = OOS;
-		ois = OIS;
+
 		
 		JLabel NameLabel = new JLabel(username);
 		NameLabel.setFont(new Font("ÇÑÄÄ À±°íµñ 240", Font.PLAIN, 15));
@@ -243,7 +243,8 @@ public class ClientGameRoom extends JFrame {
 		UserName = username;
 		SendIpAddr = ip_addr;
 		SendPort = port_no;
-		/*
+		if(count ==0 ) {
+		 
 		try {
 			socket = new Socket(ip_addr, Integer.parseInt(port_no));
 
@@ -261,8 +262,8 @@ public class ClientGameRoom extends JFrame {
 			e.printStackTrace();
 			AppendText("connect error");
 		}
-		*/
-
+		count++;
+		}
 	}
 
 	public void AppendText(String msg) {
@@ -402,7 +403,10 @@ public class ClientGameRoom extends JFrame {
 
 				// ClientInGame game = new ClientInGame(username,ip_addr,port_no);
 
-				ClientInGame cig = new ClientInGame(UserName, SendIpAddr, SendPort, RoomNumber,socket,oos,ois);
+			Socket SOCKET = socket;
+			ObjectInputStream OIS = ois;
+			ObjectOutputStream OOS = oos;
+				ClientInGame cig = new ClientInGame(UserName, SendIpAddr, SendPort, RoomNumber,SOCKET,OOS,OIS);
 				dispose();
 				
 			}

@@ -40,19 +40,17 @@ public class ClientGameRoom extends JFrame {
 	private DataOutputStream dos;
 	private String PlayerNum = "4";
 	private String InPlayerNum;
-	private String GameState;
 	private String RoomNumber;
 	private String SendIpAddr;
 	private String SendPort;
+	private String InRoomCnt;
 	private int[] RoomCnt=new int[5];
+	private String[] RoomState = new String[] {"대기중","대기중","대기중","대기중","대기중"};
 	private JLabel[] InPlayerNumLabel = new JLabel[4];
 
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
 	private JPanel contentPane;
-	private JTextField txtUserName;
-	private JTextField txtIpAdress;
-	private JTextField txtPortNumber;
 	private JButton btnInButton1;
 	private JButton btnInButton2;
 	private JButton btnInButton3;
@@ -87,6 +85,7 @@ public class ClientGameRoom extends JFrame {
 		getContentPane().add(RoomListLabel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setForeground(Color.DARK_GRAY);
 		panel_1.setBounds(12, 135, 464, 244);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -370,7 +369,10 @@ public class ClientGameRoom extends JFrame {
 					String[] RoomData = cm.data.split(" ");
 					RoomCnt[Integer.parseInt(RoomData[0])] = Integer.parseInt(RoomData[1]); 
 					InPlayerNumLabel[Integer.parseInt(RoomData[0])-1].setText(RoomData[1]);
+					InRoomCnt = RoomData[1];
 					break;
+				case "404":
+					
 					
 				}
 
@@ -381,6 +383,7 @@ public class ClientGameRoom extends JFrame {
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			JButton btn = new JButton();
 			if (e.getSource() == btnInButton1) 
 				RoomNumber = "1";
 			else if(e.getSource() == btnInButton2)
@@ -389,24 +392,18 @@ public class ClientGameRoom extends JFrame {
 				RoomNumber = "3";
 			else if(e.getSource() == btnInButton4)
 				RoomNumber = "4";
-						
-				try {
-					socket = new Socket(SendIpAddr, Integer.parseInt(SendPort));
+			btn = (JButton) e.getSource();
+			ChatMsg obcm = new ChatMsg(UserName, "600", RoomNumber);
+			SendChatMsg(obcm);
 
-					oos = new ObjectOutputStream(socket.getOutputStream());
-					oos.flush();
-					ois = new ObjectInputStream(socket.getInputStream());
-
-					ChatMsg obcm = new ChatMsg(UserName, "600", RoomNumber);
-					SendChatMsg(obcm);
-
-				} catch (NumberFormatException | IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					AppendText("connect error");
-				}
 				// ClientInGame game = new ClientInGame(username,ip_addr,port_no);
+			if(InRoomCnt.equals(PlayerNum)) {
+				btn.setEnabled(false);
+			}
+			else {
+				ClientInGame cig = new ClientInGame(UserName, SendIpAddr, SendPort, RoomNumber);
 				setVisible(false);
+				}
 			}
 			
 		

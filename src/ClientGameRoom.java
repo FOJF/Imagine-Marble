@@ -66,6 +66,9 @@ public class ClientGameRoom extends JFrame {
 		setBounds(100, 100, 1024, 768);
 		getContentPane().setLayout(null);
 
+		ListenNetwork net = new ListenNetwork();
+		net.start();
+		
 		Inaction ia = new Inaction();
 		socket = Socket;
 		oos = Oos;
@@ -236,9 +239,8 @@ public class ClientGameRoom extends JFrame {
 		contentPane = new JPanel();
 		setVisible(true);
 		UserName = username;
-
-		ListenNetwork net = new ListenNetwork();
-		net.start();
+		
+		
 
 		// AppendText("User " + username + " connecting " + ip_addr + " " + port_no);
 		/*

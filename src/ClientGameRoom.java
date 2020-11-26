@@ -59,12 +59,15 @@ public class ClientGameRoom extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClientGameRoom(String username,String ip_addr,String port_no) {
+	public ClientGameRoom(String username,String ip_addr,String port_no,Socket Socket,ObjectOutputStream OOS,ObjectInputStream OIS) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1024, 768);
 		getContentPane().setLayout(null);
 		
 		Inaction ia = new Inaction();
+		socket = Socket;
+		oos = OOS;
+		ois = OIS;
 		
 		JLabel NameLabel = new JLabel(username);
 		NameLabel.setFont(new Font("ÇÑÄÄ À±°íµñ 240", Font.PLAIN, 15));
@@ -240,7 +243,7 @@ public class ClientGameRoom extends JFrame {
 		UserName = username;
 		SendIpAddr = ip_addr;
 		SendPort = port_no;
-		
+		/*
 		try {
 			socket = new Socket(ip_addr, Integer.parseInt(port_no));
 
@@ -258,6 +261,7 @@ public class ClientGameRoom extends JFrame {
 			e.printStackTrace();
 			AppendText("connect error");
 		}
+		*/
 
 	}
 
@@ -397,13 +401,10 @@ public class ClientGameRoom extends JFrame {
 			SendChatMsg(obcm);
 
 				// ClientInGame game = new ClientInGame(username,ip_addr,port_no);
-			if(InRoomCnt.equals(PlayerNum)) {
-				btn.setEnabled(false);
-			}
-			else {
+
 				ClientInGame cig = new ClientInGame(UserName, SendIpAddr, SendPort, RoomNumber,socket,oos,ois);
-				setVisible(false);
-				}
+				dispose();
+				
 			}
 			
 		

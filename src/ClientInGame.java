@@ -380,8 +380,8 @@ public class ClientInGame extends JFrame {
 				
 			
 
-			ClientGameRoom cgr = new ClientGameRoom(UserName, SendIpAddr, SendPort);
-			setVisible(false);
+			ClientGameRoom cgr = new ClientGameRoom(UserName, SendIpAddr, SendPort,socket,oos,ois);
+			dispose();
 	}
 		
 	}

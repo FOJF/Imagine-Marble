@@ -61,7 +61,7 @@ public class ClientGameRoom extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClientGameRoom(String username,Socket Socket,ObjectOutputStream Oos,ObjectInputStream Ois) {
+	public ClientGameRoom(String username, Socket Socket, ObjectOutputStream Oos, ObjectInputStream Ois) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1024, 768);
 		getContentPane().setLayout(null);
@@ -104,7 +104,7 @@ public class ClientGameRoom extends JFrame {
 		panel_1.add(Room1Label);
 		Room1Label.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 
-		InPlayerNumLabel[0] = new JLabel(InRoomCnt);
+		InPlayerNumLabel[0] = new JLabel("0");
 		InPlayerNumLabel[0].setBounds(127, 86, 57, 15);
 		panel_1.add(InPlayerNumLabel[0]);
 
@@ -135,7 +135,7 @@ public class ClientGameRoom extends JFrame {
 		GameState2.setBounds(58, 111, 57, 15);
 		panel_2.add(GameState2);
 
-		InPlayerNumLabel[1] = new JLabel(InRoomCnt);
+		InPlayerNumLabel[1] = new JLabel("0");
 		InPlayerNumLabel[1].setBounds(127, 86, 57, 15);
 		panel_2.add(InPlayerNumLabel[1]);
 
@@ -175,7 +175,7 @@ public class ClientGameRoom extends JFrame {
 		Room3Label.setBounds(181, 10, 64, 39);
 		panel_3.add(Room3Label);
 
-		JLabel PlayerNumLabel3 = new JLabel("4");
+		JLabel PlayerNumLabel3 = new JLabel("0");
 		PlayerNumLabel3.setBounds(248, 86, 57, 15);
 		panel_3.add(PlayerNumLabel3);
 
@@ -193,7 +193,7 @@ public class ClientGameRoom extends JFrame {
 		GameState3.setBounds(58, 111, 57, 15);
 		panel_3.add(GameState3);
 
-		InPlayerNumLabel[2] = new JLabel(InRoomCnt);
+		InPlayerNumLabel[2] = new JLabel("0");
 		InPlayerNumLabel[2].setBounds(127, 86, 57, 15);
 		panel_3.add(InPlayerNumLabel[2]);
 
@@ -229,37 +229,32 @@ public class ClientGameRoom extends JFrame {
 		GameState4.setBounds(58, 111, 57, 15);
 		panel_4.add(GameState4);
 
-		InPlayerNumLabel[3] = new JLabel(InRoomCnt);
+		InPlayerNumLabel[3] = new JLabel("0");
 		InPlayerNumLabel[3].setBounds(127, 86, 57, 15);
 		panel_4.add(InPlayerNumLabel[3]);
 
 		contentPane = new JPanel();
 		setVisible(true);
 		UserName = username;
-		//AppendText("User " + username + " connecting " + ip_addr + " " + port_no);
-/*
-		if (count == 0) {
 
-			try {
-				socket = new Socket(ip_addr, Integer.parseInt(port_no));
+		ChatMsg obcm = new ChatMsg("Áö¿ÏÀÌ!", "999", "°¼¾Æ¾Ç");
+		SendChatMsg(obcm);
 
-				oos = new ObjectOutputStream(socket.getOutputStream());
-				oos.flush();
-				ois = new ObjectInputStream(socket.getInputStream());
-
-				ChatMsg obcm = new ChatMsg(UserName, "100", "Hello");
-				SendChatMsg(obcm);
-				ListenNetwork net = new ListenNetwork();
-				net.start();
-
-			} catch (NumberFormatException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				AppendText("connect error");
-			}
-			count++;
-		}
-		*/
+		// AppendText("User " + username + " connecting " + ip_addr + " " + port_no);
+		/*
+		 * if (count == 0) {
+		 * 
+		 * try { socket = new Socket(ip_addr, Integer.parseInt(port_no));
+		 * 
+		 * oos = new ObjectOutputStream(socket.getOutputStream()); oos.flush(); ois =
+		 * new ObjectInputStream(socket.getInputStream());
+		 * 
+		 * ChatMsg obcm = new ChatMsg(UserName, "100", "Hello"); SendChatMsg(obcm);
+		 * ListenNetwork net = new ListenNetwork(); net.start();
+		 * 
+		 * } catch (NumberFormatException | IOException e) { // TODO Auto-generated
+		 * catch block e.printStackTrace(); AppendText("connect error"); } count++; }
+		 */
 	}
 
 	public void AppendText(String msg) {

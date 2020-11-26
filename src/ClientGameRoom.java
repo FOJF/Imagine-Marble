@@ -104,7 +104,7 @@ public class ClientGameRoom extends JFrame {
 		panel_1.add(Room1Label);
 		Room1Label.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 
-		InPlayerNumLabel[0] = new JLabel("0");
+		InPlayerNumLabel[0] = new JLabel(InRoomCnt);
 		InPlayerNumLabel[0].setBounds(127, 86, 57, 15);
 		panel_1.add(InPlayerNumLabel[0]);
 
@@ -135,7 +135,7 @@ public class ClientGameRoom extends JFrame {
 		GameState2.setBounds(58, 111, 57, 15);
 		panel_2.add(GameState2);
 
-		InPlayerNumLabel[1] = new JLabel("0");
+		InPlayerNumLabel[1] = new JLabel(InRoomCnt);
 		InPlayerNumLabel[1].setBounds(127, 86, 57, 15);
 		panel_2.add(InPlayerNumLabel[1]);
 
@@ -193,7 +193,7 @@ public class ClientGameRoom extends JFrame {
 		GameState3.setBounds(58, 111, 57, 15);
 		panel_3.add(GameState3);
 
-		InPlayerNumLabel[2] = new JLabel("0");
+		InPlayerNumLabel[2] = new JLabel(InRoomCnt);
 		InPlayerNumLabel[2].setBounds(127, 86, 57, 15);
 		panel_3.add(InPlayerNumLabel[2]);
 
@@ -229,7 +229,7 @@ public class ClientGameRoom extends JFrame {
 		GameState4.setBounds(58, 111, 57, 15);
 		panel_4.add(GameState4);
 
-		InPlayerNumLabel[3] = new JLabel("0");
+		InPlayerNumLabel[3] = new JLabel(InRoomCnt);
 		InPlayerNumLabel[3].setBounds(127, 86, 57, 15);
 		panel_4.add(InPlayerNumLabel[3]);
 

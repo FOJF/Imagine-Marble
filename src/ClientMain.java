@@ -195,7 +195,7 @@ public class ClientMain extends JFrame {
 				oos.flush();
 				ois = new ObjectInputStream(socket.getInputStream());
 
-				ChatMsg obcm = new ChatMsg(UserName, "100", "Hello");
+				ChatMsg obcm = new ChatMsg(username, "100", "Hello");
 				SendChatMsg(obcm);
 			} catch (NumberFormatException | IOException e1) {
 				// TODO Auto-generated catch block

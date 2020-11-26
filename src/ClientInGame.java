@@ -40,7 +40,7 @@ public class ClientInGame extends JFrame {
 	private JLabel Dice1 = new JLabel("");
 	private JLabel Dice2 = new JLabel("");
 
-	public  ClientInGame(String username,String ip_addr,String port_no, String roomnumber) {
+	public  ClientInGame(String username,String ip_addr,String port_no, String roomnumber,Socket Socket,ObjectOutputStream OOS,ObjectInputStream OIS) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1024, 768);
 		getContentPane().setLayout(null);
@@ -49,7 +49,9 @@ public class ClientInGame extends JFrame {
 		SendIpAddr = ip_addr;
 		SendPort = port_no;
 		RoomNumber = roomnumber;
-
+		socket = Socket;
+		oos = OOS;
+		ois = OIS;
 		
 		JButton btnRoll = new JButton("\uC8FC\uC0AC\uC704 \uAD74\uB9AC\uAE30");
 		btnRoll.setFont(new Font("문체부 제목 돋음체", Font.BOLD, 15));
@@ -257,8 +259,8 @@ public class ClientInGame extends JFrame {
 		JButton btnOutButton = new JButton("\uB098\uAC00\uAE30");
 		btnOutButton.setBounds(609, 642, 140, 44);
 		getContentPane().add(btnOutButton);
-		//Out out = new Out();
-		//btnOutButton.addActionListener(out);
+		Out out = new Out();
+		btnOutButton.addActionListener(out);
 		setVisible(true);
 		
 		
@@ -368,18 +370,20 @@ public class ClientInGame extends JFrame {
 		
 		}
 	}
-	/*
 	class Out implements ActionListener // 내부클래스로 액션 이벤트 처리 클래스
 	{
-		
 		public void actionPerformed(ActionEvent e) {
-			ChatMsg obcm = new ChatMsg(UserName, "601", RoomNumber);
-			SendChatMsg(obcm);
+			
+
+				ChatMsg obcm1 = new ChatMsg(UserName, "601", RoomNumber);
+				SendChatMsg(obcm1);
+				
+			
+
 			ClientGameRoom cgr = new ClientGameRoom(UserName, SendIpAddr, SendPort);
 			setVisible(false);
 	}
 		
 	}
-	*/
 	
 }

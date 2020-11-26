@@ -401,7 +401,7 @@ public class ClientGameRoom extends JFrame {
 				btn.setEnabled(false);
 			}
 			else {
-				ClientInGame cig = new ClientInGame(UserName, SendIpAddr, SendPort, RoomNumber);
+				ClientInGame cig = new ClientInGame(UserName, SendIpAddr, SendPort, RoomNumber,socket,oos,ois);
 				setVisible(false);
 				}
 			}

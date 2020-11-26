@@ -237,8 +237,8 @@ public class ClientGameRoom extends JFrame {
 		setVisible(true);
 		UserName = username;
 
-		ChatMsg obcm = new ChatMsg("Áö¿ÏÀÌ!", "999", "°¼¾Æ¾Ç");
-		SendChatMsg(obcm);
+		ListenNetwork net = new ListenNetwork();
+		net.start();
 
 		// AppendText("User " + username + " connecting " + ip_addr + " " + port_no);
 		/*
